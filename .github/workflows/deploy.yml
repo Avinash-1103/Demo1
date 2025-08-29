@@ -3,33 +3,31 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main   # or your default branch name
-
+      - main   # your default branch
 
 permissions:
   contents: write
 
-  
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3   # use v3 (stable)
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18          # use LTS (20 is fine too, but 18 is safest for Actions)
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci                 # ✅ safer & faster than "npm install"
 
       - name: Build project
         run: npm run build
 
-      # ✅ Preserve CNAME file
+      # ✅ Preserve custom domain
       - name: Add CNAME
         run: echo "tuzyaaaichigand.site" > ./dist/CNAME
 
