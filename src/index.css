@@ -15,6 +15,6 @@ body { font-synthesis-weight: none; text-rendering: optimizeLegibility; }
 
 /* Increase global font size */
 html {
-  font-size: 25px;
+  font-size: 20px;
   /* default was 16px */
 }
